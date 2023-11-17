@@ -64,8 +64,8 @@ cron.schedule('0 0 */3 * *', async () => {
 });
 
 db.sequelize.sync().then(() => {
-  app.listen(10000, () => {
-    console.log("Server running on port " + 10000);
+  app.listen(8080, () => {
+    console.log("Server running on port " + 8080);
   });
 }).catch(err => {
   
