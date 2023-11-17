@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         image: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         price: {
@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     });
 
     Products.associate = (models) => {

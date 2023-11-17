@@ -25,9 +25,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         avatar: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     });
     Users.associate = (models) => {
         Users.hasOne(models.UserRole, {

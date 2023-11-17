@@ -11,22 +11,24 @@ const { adminToken } = require('../middlewares/AdminMiddleware');
 router.get('/all', async (req, res) => {
 
     try {
-        const list = await Products.findAll();
-        const details = await DetailProduct.findAll();
+        const list = await Products.findAll({
+            include: DetailProduct
+        });
+        // const details = await DetailProduct.findAll();
 
-        let arr = [];
+        // let arr = [];
 
-        for (let i = 0; i < list.length; i++) {
-            for (let j = 0; j < details.length; j++) {
-                if (list[i].id === details[j].id) {
-                    arr.push({
-                        product: list[i],
-                        details: details[j],
-                    });
-                }
-            }
-        }
-        res.status(200).json(arr);
+        // for (let i = 0; i < list.length; i++) {
+        //     for (let j = 0; j < details.length; j++) {
+        //         if (list[i].id === details[j].id) {
+        //             arr.push({
+        //                 product: list[i],
+        //                 details: details[j],
+        //             });
+        //         }
+        //     }
+        // }
+        res.status(200).json(list);
     } catch (error) {
         res.status(400).json(error);
     }

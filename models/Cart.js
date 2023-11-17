@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     })
     Cart.associate = (models) => {
         Cart.belongsTo(models.Bill, {

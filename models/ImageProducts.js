@@ -1,19 +1,22 @@
 module.exports = (sequelize, DataTypes) => {
     const ImageProducts = sequelize.define("ImageProducts", {
         path: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
         },
         DetailProductId: {
             type: DataTypes.INTEGER,
             allowNull: true,
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     });
 
-    ImageProducts.associate = (models) => {
-        ImageProducts.hasOne(models.DetailProduct, {
-            onDelete: "cascade",
-        })
-    }
+    // ImageProducts.associate = (models) => {
+    //     ImageProducts.belongsTo(models.DetailProduct, {
+    //         onDelete: "cascade",
+    //     })
+    // }
     return ImageProducts;
 }

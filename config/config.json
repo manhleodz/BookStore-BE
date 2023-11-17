@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "hungluxury",
-    "host": "127.0.0.1",
+    "username": "sql12662868",
+    "password": "fDy7Xahx4j",
+    "database": "sql12662868",
+    "host": "sql12.freesqldatabase.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": "id21225226_manhleo",
+    "password": "@Manhleo2k3",
+    "database": "id21225226_superapp",
+    "host": "databases.000webhost.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "id21225226_manhleo",
+    "password": "@Manhleo2k3",
+    "database": "id21225226_superapp",
+    "host": "databases.000webhost.com",
     "dialect": "mysql"
   }
 }

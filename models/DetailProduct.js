@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
         },
         category: {
@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     });
 
     DetailProduct.associate = (models) => {

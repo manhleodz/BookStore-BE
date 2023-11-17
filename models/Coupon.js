@@ -16,11 +16,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_unicode_ci'
     })
-    Coupon.associate = (models) => {
-        Coupon.hasMany(models.Bill, {
-            onDelete: "cascade",
-        })
-    }
     return Coupon;
 }

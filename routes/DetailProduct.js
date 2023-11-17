@@ -63,6 +63,8 @@ router.put("/rating/:id", validateToken, async (req, res) => {
         star += i.rating;
     }
 
+    star = star / detail.Product.Comments.length;
+
     const rating = Math.floor((star * 10)) / 10;
 
     await DetailProduct.update({
