@@ -10,12 +10,8 @@ require('dotenv').config();
 const port = process.env.PORT;
 
 const app = express();
-app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +20,10 @@ app.set('views', path.join(__dirname, 'views'));
 const db = require("./models");
 
 // Routers
+
+app.get("/" , (req, res, next) => {
+  res.send("Hello World!");
+})
 const authRouter = require("./routes/Auth");
 app.use("/auth", authRouter);
 
@@ -64,8 +64,8 @@ cron.schedule('0 0 */3 * *', async () => {
 });
 
 db.sequelize.sync().then(() => {
-  app.listen(port, () => {
-    console.log("Server running on port " + port);
+  app.listen(1473, () => {
+    console.log("Server running on port " + 1473);
   });
 }).catch(err => {
   
