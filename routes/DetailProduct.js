@@ -58,22 +58,32 @@ router.put("/rating/:id", validateToken, async (req, res) => {
         }
     });
 
-    let star = 0;
-    for (let i of detail.Product.Comments) {
-        star += i.rating;
+    if (detail.Product.Comments.length > 0) {
+        let star = 0;
+        for (let i of detail.Product.Comments) {
+            star += i.rating;
+        }
+
+        star = star / detail.Product.Comments.length;
+
+        const rating = Math.floor((star * 10)) / 10;
+
+        await DetailProduct.update({
+            ratingstars: rating
+        }, {
+            where: { id: id }
+        });
+
+        res.status(200).json("success");
+    } else {
+        await DetailProduct.update({
+            ratingstars: 0
+        }, {
+            where: { id: id }
+        });
+
+        res.status(200).json("success");
     }
-
-    star = star / detail.Product.Comments.length;
-
-    const rating = Math.floor((star * 10)) / 10;
-
-    await DetailProduct.update({
-        ratingstars: rating
-    }, {
-        where: { id: id }
-    });
-
-    res.status(200).json("success");
 });
 
 module.exports = router;

@@ -17,6 +17,7 @@ router.get('/all', async (req, res) => {
         res.status(200).json(list);
     } catch (error) {
         res.status(400).json(error);
+        
     }
 })
 
