@@ -13,10 +13,5 @@ module.exports = (sequelize, DataTypes) => {
         collate: 'utf8_unicode_ci'
     });
 
-    // ImageProducts.associate = (models) => {
-    //     ImageProducts.belongsTo(models.DetailProduct, {
-    //         onDelete: "cascade",
-    //     })
-    // }
     return ImageProducts;
 }
