@@ -264,10 +264,75 @@ const sendMail = (req, res) => {
     }
 };
 
+const forgotPassword = (req, res) => {
+
+    try {
+        const email = req.body.email;
+        const OTP = req.body.OTP;
+
+        const user = Users.findOne({where: {email: email}});
+        if (user) {
+            let config = {
+                service: 'gmail',
+                auth: {
+                    user: EMAIL,
+                    pass: PASSWORD
+                }
+            }
+            
+            let transporter = nodemailer.createTransport(config);
+            let MailGenerator = new Mailgen({
+                theme: "default",
+                product: {
+                    name: process.env.APP_NAME,
+                    link: process.env.APP_LINK,
+                }
+            })
+
+            let response = {
+                body: {
+                    table: {
+                        data: [
+                            {
+                                "Thông tin": "Mã OTP",
+                                OTP: OTP,
+                            }
+                        ]
+                    },
+                }
+            }
+    
+            let mail = MailGenerator.generate(response)
+    
+            let message = {
+                from: userEmail,
+                to: EMAIL,
+                subject: "OTP",
+                html: mail
+            }
+    
+            transporter.sendMail(message).then(() => {
+                return res.status(201).json({
+                    msg: "you should receive an email"
+                })
+            }).catch(error => {
+                return res.status(500).json({ error })
+            })
+        } else {
+            res.status(400).json("Email chưa được tạo tài khoản");
+        }
+
+    } catch (err) {
+        res.status(400).send("Lượng truy cập quá lớn so với server free");
+    }
+
+};
+
 
 module.exports = {
     signup,
     login,
     verify1,
-    sendMail
+    sendMail,
+    forgotPassword
 }
